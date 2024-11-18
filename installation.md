@@ -16,7 +16,7 @@ cp -R ignis ~/.config/
 cp -R Material ~/.local/share/themes
 ```
 
-## Install dependencies
+## Install dependencies (Arch, for others install respective packages that are in dependencies.txt)
 
 Firstly, you need to install AUR helper (e.g., paru).
 
