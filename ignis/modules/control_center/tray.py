@@ -29,9 +29,12 @@ class TrayItem(Widget.Button):
 
 def tray():
     return Widget.Box(
+        #display = "inline-block";
+        #width = 100;
         css_classes=["tray"],
         setup=lambda self: system_tray.connect(
             "added", lambda x, item: self.append(TrayItem(item))
         ),
         spacing=10,
+        halign = "center"
     )

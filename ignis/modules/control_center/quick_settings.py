@@ -1,7 +1,7 @@
 from ignis.widgets import Widget
 from .wifi import wifi_control
 from .record import record_control
-from .dnd import dnd_button
+from .dnd import dnd_button, powerman
 from .dark_mode import dark_mode_button
 from .ethernet import ethernet_control
 from .vpn import vpn_control
@@ -9,7 +9,7 @@ from .qs_button import QSButton
 from ignis.services.network import NetworkService
 
 network = NetworkService.get_default()
-
+is_saving_active = False
 
 def add_button(main_box: Widget.Box, buttons: tuple[QSButton, ...], i: int) -> None:
     row = Widget.Box(homogeneous=True)
@@ -41,12 +41,13 @@ def qs_fabric(main_box: Widget.Box, *buttons: QSButton) -> None:
 def qs_config(main_box: Widget.Box) -> None:
     qs_fabric(
         main_box,
-        *wifi_control(),
-        *ethernet_control(),
+        #*wifi_control(),
+        #ethernet_control(),
         *vpn_control(),
         dnd_button(),
-        dark_mode_button(),
-        record_control(),
+        powerman(),
+        #dark_mode_button(),
+        #record_control(),
     )
 
 

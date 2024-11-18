@@ -5,6 +5,7 @@ from ignis.app import IgnisApp
 from ignis.services.fetch import FetchService
 from ..settings import settings_window
 from options import avatar_opt
+from ignis.utils import Utils
 
 fetch = FetchService.get_default()
 app = IgnisApp.get_default()
@@ -55,7 +56,7 @@ def settings_button() -> Widget.Button:
         child=Widget.Icon(image="emblem-system-symbolic", pixel_size=20),
         halign="end",
         hexpand=True,
-        css_classes=["user-settings", "unset"],
+        css_classes=["user-power", "unset"],
         on_click=lambda x: settings_window(),
     )
 
@@ -68,9 +69,42 @@ def power_button() -> Widget.Button:
         on_click=lambda x: app.toggle_window("ignis_POWERMENU"),
     )
 
+def restart() -> Widget.Button:
+    return Widget.Button(
+        child=Widget.Icon(image="system-restart-symbolic", pixel_size=20),
+        halign="end",
+        css_classes=["user-power", "unset"],
+        on_click= lambda x: Utils.exec_sh_async("reboot")
+    )
+
+def suspend() -> Widget.Button:
+    return Widget.Button(
+        child=Widget.Icon(image="night-light-symbolic", pixel_size=20),
+        halign="end",
+        css_classes=["user-power", "unset"],
+        on_click= lambda x: Utils.exec_sh_async("systemctl suspend && hyprlock")
+    )
+
+def exita() -> Widget.Button:
+    return Widget.Button(
+        child=Widget.Icon(image="system-log-out-symbolic", pixel_size=20),
+        halign="end",
+        css_classes=["user-power", "unset"],
+        on_click= lambda x: Utils.exec_sh_async("hyprctl dispatch exit 0")
+    )
+
+def hib() -> Widget.Button:
+    return Widget.Button(
+        child=Widget.Icon(image="system-hibernate-symbolic", pixel_size=20),
+        halign="end",
+        css_classes=["user-power", "unset"],
+        on_click= lambda x: Utils.exec_sh_async("hyprctl dispatch exit 0")
+    )
+
 
 def user() -> Widget.Box:
     return Widget.Box(
-        child=[user_image(), username(), settings_button(), power_button()],
+        child=[settings_button(), Widget.Label(label = "⠀"), suspend(), Widget.Label(label = "⠀"), exita(), Widget.Label(label = "⠀"), hib(), Widget.Label(label = "⠀"), restart(), Widget.Label(label = "⠀"), power_button()],
         css_classes=["user"],
+        halign = "center"
     )
