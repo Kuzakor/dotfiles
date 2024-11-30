@@ -1,42 +1,42 @@
-hyprland
-xdg-desktop-portal-hyprland
-xorg-xwayland
-qt5-wayland
+hyprland (install manually)
+xdg-desktop-portal
+xwayland
+qtwayland5
 qt6-wayland
 qt5ct
-qt6ct
-libva
-linux-headers
+qt6ct (install manually)
+libva2
+linux-headers-$(uname -r)
 pipewire
 pipewire-alsa
 pipewire-pulse
 pipewire-jack
 pavucontrol
 wireplumber
-ignis-git
-dart-sass
-nm-connection-editor
-polkit-gnome
-hyprlock
-pamixer
-grimblast-git
+ignis-git (install manually)
+dart-sass (install manually)
+network-manager-gnome
+policykit-1-gnome
+hyprlock (install manually)
+pamixer (install manually)
+grimblast-git (install manually)
 kitty
 thunar
 thunar-archive-plugin
 file-roller
 xdg-user-dirs
-python-requests
-python-jinja
-python-materialyoucolor
-python-pillow
-gst-plugin-pipewire
-gst-plugins-good
-gst-plugins-ugly
-gst-plugins-base
-networkmanager
-ttf-jetbrains-mono
-ttf-jetbrains-mono-nerd
-ttf-nerd-fonts-symbols
+python3-requests
+python3-jinja2
+python-materialyoucolor (install manually)
+python3-pil
+gst-plugin-pipewire (install manually)
+gstreamer1.0-plugins-good
+gstreamer1.0-plugins-ugly
+gstreamer1.0-plugins-base
+network-manager
+fonts-jetbrains-mono
+ttf-jetbrains-mono-nerd (install manually)
+ttf-nerd-fonts-symbols (install manually)
 papirus-icon-theme
 upower
 wl-clipboard
