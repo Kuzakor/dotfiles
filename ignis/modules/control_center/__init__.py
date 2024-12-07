@@ -13,19 +13,33 @@ from ignis.services.system_tray import SystemTrayService
 
 app = IgnisApp.get_default()
 
-def get_label(percent) -> str:
-    if percent > 75.0:
-        return "● "
-    if percent > 50.0: 
-        return "◕ "
-    if percent > 25.0: 
-        return "◑ "
-    if percent > 10.0:
-        return "◔ "
-    return "○ "
-
-
-#ef cpu() -
+def img(typ, pr):
+    pro = 0
+    if pr < 15:
+        pro = 0
+    if pr < 25:
+        pro = 15
+    if pr < 35:
+        pro = 25
+    if pr < 50:
+        pro = 35
+    if pr < 65:
+        pro = 50
+    if pr < 75:
+        pro = 65
+    if pr < 85:
+        pro = 75
+    if pr < 100:
+        pro = 85
+    if pr > 99:
+        pro = 100
+    # replace kuba with your username
+    stri = "/home/kuba/.config/ignis/modules/control_center/" + typ + "/" + str(pro) + ".png"
+    return Widget.Picture(
+    image = stri,
+    width=100,
+    height=100
+    )
 
 def info() -> Widget.Box:
     return Widget.Box(
@@ -33,23 +47,10 @@ def info() -> Widget.Box:
         halign = "center",
         vexpand = True,
         child = [
- #           Widget.
-            Widget.Picture(
-                image='/home/kuba/Muzyka/cpu/cpu6.png',
-                width=70,
-                height=70
-            ),
-            Widget.Picture(
-                image='/home/kuba/Muzyka/ram/ram6.png',
-                width=70,
-                height=70
-            )
-            #Widget.Icon(image="cpufreq-icon", pixel_size=20),
-            #Widget.Label(label = " ram: " + get_label(psutil.virtual_memory().percent)),
-            #Widget.Label(label = " net: " + get_label(60)),
-            # When on laptop comment the first line and uncomment the second
-            #Widget.Label(label = " battery: " + get_label(100))
-            #Widget.Label(label = "battery: " + str(psutil.sensors_battery().percent) + "%")
+            img("cpu", psutil.cpu_percent()),
+            img("ram", psutil.virtual_memory().percent),
+            img("bat", 100)
+            #img("bat", str(psutil.sensors_battery().percent))
         ]
     )
 
